@@ -6,10 +6,8 @@ MODES = 'ED'
 
 ''' Caesar Code '''
 def main():
-
     #Collect data
     while True:
-
         print("Select mode - (E)ncode, (D)ecode")
         mode = input('> ')
         mode = mode.upper()
@@ -28,7 +26,6 @@ def main():
             if 0 <= key <= 25:
                 break
 
-
     #Transform the message
     transformedMessage = ''
     if mode == 'E':
@@ -42,7 +39,6 @@ def main():
                 transformedMessage += chr(symbolASCII)
             else:
                 transformedMessage += symbol
-
 
     else:
         for symbol in message:

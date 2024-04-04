@@ -1,8 +1,15 @@
-
 import sys,random
 
 """Main loop"""
 while True:
+    # Introduction
+    print('''Welcome to the automatic dice roller,
+You can choose the number of dices and their sides
+right with the eventual modification to the result.
+Examples:
+    3d3      : 3 dices of 3-sided type
+    2d6      : 2 dices of 6-sided type
+    3d16 + 2 : 3 dices of 16-sided type with +2 modification to result''')
 
     # Get the request
     print("Do You want to (E)nd, or give the dices to be thrown?")

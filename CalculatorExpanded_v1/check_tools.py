@@ -21,3 +21,4 @@ class CheckData:
         if val == 0:
             return True
         return False
+

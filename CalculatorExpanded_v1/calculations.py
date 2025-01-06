@@ -2,7 +2,7 @@ import sys
 
 from operations import Operations
 from get_data import GetData
-from check_data import CheckData
+from check_tools import CheckData
 
 class Calculations:
 
@@ -27,7 +27,6 @@ class Calculations:
                 out = self.op.add(out,data[i])
                 print(f' + {data[i]}', end='')
         print(f" = {out}")
-        input("Press to continue...")
 
     def subtract(self):
         print('Input numbers, finish with "="')
@@ -43,9 +42,8 @@ class Calculations:
             print(f"{out}", end='')
             for i in range(1,val_end):
                 out = self.op.sub(out,data[i])
-                print(f' + {data[i]}', end='')
+                print(f' - {data[i]}', end='')
         print(f" = {out}")
-        input("Press to continue...")
 
     def multiply(self):
         print('Input numbers, finish with "="')
@@ -61,9 +59,8 @@ class Calculations:
             print(f"{out}", end='')
             for i in range(1,val_end):
                 out = self.op.mul(out,data[i])
-                print(f' + {data[i]}', end='')
+                print(f' * {data[i]}', end='')
         print(f" = {out}")
-        input("Press to continue...")
 
     def divide(self):
         print('Input numbers, finish with "="')
@@ -79,12 +76,16 @@ class Calculations:
             print(f"{out}", end='')
             for i in range(1,val_end):
                 out = self.op.div(out,data[i])
-                print(f' + {data[i]}', end='')
+                print(f' / {data[i]}', end='')
         print(f" = {out}")
-        input("Press to continue...")
 
     def basic_calcs(self):
-        print("Create operation...")
+        '''Calculations without order of operations'''
+        print("Create number-operator operation")
+        data_str = self.gd.get_str_val()
+        print(f'Data: {data_str}')
+        self.op.multi_oper(data_str)
+
 
 
     def exit(self):

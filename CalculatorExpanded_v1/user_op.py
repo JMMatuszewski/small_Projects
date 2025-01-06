@@ -22,7 +22,7 @@ class UserOp:
         2. Subtract
         3. Multiply
         4. Divide
-        5. Basic Calculations (+ - * /)
+        5. Calculations without order (+ - * /)
         ...
         e. Exit
         """)
@@ -31,5 +31,6 @@ class UserOp:
         choice = input('Choose action: ')
         if choice in self.dict_opt.keys():
             self.dict_opt[choice]()
+            input("Press to continue...")
         else:
             print(f"Wrong command, proper commands are:\n-", "\n- ".join([str(option) for option in self.dict_opt.keys()]))

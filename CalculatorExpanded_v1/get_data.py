@@ -32,7 +32,7 @@ class GetData:
         str = ''
 
         while True:
-            print('\n*10')
+            print('\n'*10)
             val = input(f'>{str} ')
             if val == '=':
                 if brackets != 0:

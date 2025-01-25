@@ -24,35 +24,56 @@ class GetData:
 
     def get_str_val(self):
         '''Create string made of numbers and basic operators'''
+        opers = ['+','-','*','/']
+        # 0b1010 | num-oper-(-)
+        next_aval = 10
+        brackets = 0
         data = []
-        str = '>'
-        num_oper = 1
+        str = ''
+
         while True:
-            try:
-                # val = input(f"{'num :' if num_oper%2 != 0 else 'oper:'}")
-                print('\n'*20)
-                val = input(f'{str} ')
-                if val == '=':
+            print('\n*10')
+            val = input(f'>{str} ')
+            if val == '=':
+                if brackets != 0:
+                    print("Close all the brackets")
+                    continue
+                else:
                     return data
 
-                if num_oper%2 != 0:
+            # Check for number
+            if next_aval & (1 << 3):
+                try:
                     fval = float(val)
-                    if len(data) > 2:
-                        if data[-1] == '/' and fval == 0:
-                            print("Divisor cannot be 0")
-                            continue
                     data.append(fval)
                     str += val
-                    num_oper += 1
-                    print(data)
-                else:
-                    if val not in self.opers:
-                        print("Wrong operator")
-                        continue
+                    next_aval = 0b0101 #5
+                    continue
+                except ValueError:
+                    pass
+
+            # Check for operator
+            if next_aval & (1 << 2):
+                if val in opers:
                     data.append(val)
                     str += val
-                    num_oper += 1
-                    print(data)
+                    next_aval = 0b1010 #10
+                    continue
 
-            except ValueError:
-                print("Wrong data - only numbers are acceptable")
+            # Check for ' ( '
+            if next_aval & (1 << 1):
+                if val == '(':
+                    data.append(val)
+                    str += val
+                    next_aval = 0b1010 #10
+                    brackets += 1
+                    continue
+
+            # Check for ' ) '
+            if next_aval& (1 << 0):
+                if val == ')' and brackets > 0:
+                    data.append(val)
+                    str += val
+                    next_aval = 0b0101 #5
+                    brackets -= 1
+                    continue

@@ -2,4 +2,5 @@
 Archive/
 CalculatorExpanded_v1/.idea/
 CalculatorExpanded_v1/__pycache__/
+CalculatorExpanded_v1/tests/__pycache__/test_calculations.cpython-311-pytest-8.3.4.pyc
 .idea/

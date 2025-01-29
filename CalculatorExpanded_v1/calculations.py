@@ -69,7 +69,7 @@ class Operations:
         for i, el in enumerate(data_par):
             if skip != 0:
                 if self.log:
-                    print(f'Skipped {el}')
+                    print(f'Skip [{i}]{el}')
                 skip -= 1
                 continue
             else:
@@ -80,20 +80,14 @@ class Operations:
                 elif el == ')':
                     if self.log:
                         print(f'Par|break: {data_out}')
-                    skip = i
+                    skip = i+1
                     break
 
                 else:
                     data_out.append(data_par[i])
 
-        if self.log:
-            print(f'Par: {data_out}')
         data_out = self.order(data_out)
-        if self.log:
-            print(f'Par/order: {data_out}')
         data_out = self.calc_str(data_out)
-        if self.log:
-            print(f'Par/order/calc: {data_out} skip: {skip}')
         return data_out, skip
 
 
@@ -114,13 +108,15 @@ class Operations:
                     continue
 
                 if el == '*':
-                    result = self.mul(out[i-1],data_str[i+1])
-                    out[i-1] = result
+                    l = len(out)
+                    result = self.mul(out[l-1],data_str[i+1])
+                    out[l-1] = result
                     skip = True
 
                 elif el == '/':
-                    result = self.div(out[i - 1], data_str[i + 1])
-                    out[i-1] = result
+                    l = len(out)
+                    result = self.div(out[l-1], data_str[i+1])
+                    out[l-1] = result
                     skip = True
                 else:
                     out.append(el)
@@ -130,7 +126,6 @@ class Operations:
         '''Calculate the result of basic string'''
         if self.log:
             print(f'Calc: {data_str}')
-        result = []
         result = data_str[0]
         if len(data_str) != 0:
             for i, el in enumerate(data_str):
